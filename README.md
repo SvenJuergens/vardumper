@@ -6,6 +6,8 @@ more info about VarDumper [here](https://symfony.com/doc/master/components/var_d
 ## Install
 Use ExtensionManger to install.
 
+In Composer Mode use ``composer require symfony/var-dumper`` direct
+
 ## Usage
 In your PHP code use
 ``dump($var)``
