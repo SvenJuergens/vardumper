@@ -11,21 +11,19 @@
 
 namespace Symfony\Component\VarDumper\Caster;
 
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
- * Casts GMP objects to array representation.
- *
- * @author Hamza Amrouche <hamza.simperfit@gmail.com>
- * @author Nicolas Grekas <p@tchwork.com>
- *
- * @final
+ * @author Grégoire Pineau <lyrixx@lyrixx.info>
  */
-class GmpCaster
+final class UuidCaster
 {
-    public static function castGmp(\GMP $gmp, array $a, Stub $stub, bool $isNested, int $filter): array
+    public static function castRamseyUuid(UuidInterface $c, array $a, Stub $stub, bool $isNested): array
     {
-        $a[Caster::PREFIX_VIRTUAL.'value'] = new ConstStub(gmp_strval($gmp), gmp_strval($gmp));
+        $a += [
+            Caster::PREFIX_VIRTUAL.'uuid' => (string) $c,
+        ];
 
         return $a;
     }

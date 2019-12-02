@@ -76,16 +76,21 @@ abstract class AbstractCloner implements ClonerInterface
         'Exception' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castException'],
         'Error' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castError'],
         'Symfony\Component\DependencyInjection\ContainerInterface' => ['Symfony\Component\VarDumper\Caster\StubCaster', 'cutInternals'],
+        'Symfony\Component\EventDispatcher\EventDispatcherInterface' => ['Symfony\Component\VarDumper\Caster\StubCaster', 'cutInternals'],
         'Symfony\Component\HttpClient\CurlHttpClient' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClient'],
         'Symfony\Component\HttpClient\NativeHttpClient' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClient'],
-        'Symfony\Component\HttpClient\Response\CurlResponse' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClient'],
-        'Symfony\Component\HttpClient\Response\NativeResponse' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClient'],
+        'Symfony\Component\HttpClient\Response\CurlResponse' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClientResponse'],
+        'Symfony\Component\HttpClient\Response\NativeResponse' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castHttpClientResponse'],
         'Symfony\Component\HttpFoundation\Request' => ['Symfony\Component\VarDumper\Caster\SymfonyCaster', 'castRequest'],
         'Symfony\Component\VarDumper\Exception\ThrowingCasterException' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castThrowingCasterException'],
         'Symfony\Component\VarDumper\Caster\TraceStub' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castTraceStub'],
         'Symfony\Component\VarDumper\Caster\FrameStub' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castFrameStub'],
         'Symfony\Component\VarDumper\Cloner\AbstractCloner' => ['Symfony\Component\VarDumper\Caster\StubCaster', 'cutInternals'],
-        'Symfony\Component\Debug\Exception\SilencedErrorContext' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castSilencedErrorContext'],
+        'Symfony\Component\ErrorHandler\Exception\SilencedErrorContext' => ['Symfony\Component\VarDumper\Caster\ExceptionCaster', 'castSilencedErrorContext'],
+
+        'Imagine\Image\ImageInterface' => ['Symfony\Component\VarDumper\Caster\ImagineCaster', 'castImage'],
+
+        'Ramsey\Uuid\UuidInterface' => ['Symfony\Component\VarDumper\Caster\UuidCaster', 'castRamseyUuid'],
 
         'ProxyManager\Proxy\ProxyInterface' => ['Symfony\Component\VarDumper\Caster\ProxyManagerCaster', 'castProxy'],
         'PHPUnit_Framework_MockObject_MockObject' => ['Symfony\Component\VarDumper\Caster\StubCaster', 'cutInternals'],
@@ -197,33 +202,27 @@ abstract class AbstractCloner implements ClonerInterface
 
     /**
      * Sets the maximum number of items to clone past the minimum depth in nested structures.
-     *
-     * @param int $maxItems
      */
-    public function setMaxItems($maxItems)
+    public function setMaxItems(int $maxItems)
     {
-        $this->maxItems = (int) $maxItems;
+        $this->maxItems = $maxItems;
     }
 
     /**
      * Sets the maximum cloned length for strings.
-     *
-     * @param int $maxString
      */
-    public function setMaxString($maxString)
+    public function setMaxString(int $maxString)
     {
-        $this->maxString = (int) $maxString;
+        $this->maxString = $maxString;
     }
 
     /**
      * Sets the minimum tree depth where we are guaranteed to clone all the items.  After this
      * depth is reached, only setMaxItems items will be cloned.
-     *
-     * @param int $minDepth
      */
-    public function setMinDepth($minDepth)
+    public function setMinDepth(int $minDepth)
     {
-        $this->minDepth = (int) $minDepth;
+        $this->minDepth = $minDepth;
     }
 
     /**
@@ -234,7 +233,7 @@ abstract class AbstractCloner implements ClonerInterface
      *
      * @return Data The cloned variable represented by a Data object
      */
-    public function cloneVar($var, $filter = 0)
+    public function cloneVar($var, int $filter = 0)
     {
         $this->prevErrorHandler = set_error_handler(function ($type, $msg, $file, $line, $context = []) {
             if (E_RECOVERABLE_ERROR === $type || E_USER_ERROR === $type) {
@@ -276,12 +275,11 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Casts an object to an array representation.
      *
-     * @param Stub $stub     The Stub for the casted object
      * @param bool $isNested True if the object is nested in the dumped structure
      *
      * @return array The object casted as array
      */
-    protected function castObject(Stub $stub, $isNested)
+    protected function castObject(Stub $stub, bool $isNested)
     {
         $obj = $stub->value;
         $class = $stub->class;
@@ -336,12 +334,11 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Casts a resource to an array representation.
      *
-     * @param Stub $stub     The Stub for the casted resource
      * @param bool $isNested True if the object is nested in the dumped structure
      *
      * @return array The resource casted as array
      */
-    protected function castResource(Stub $stub, $isNested)
+    protected function castResource(Stub $stub, bool $isNested)
     {
         $a = [];
         $res = $stub->value;
