@@ -1,5 +1,15 @@
 <?php
 
+
+
+
+
+
+
+
+
+
+
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -19,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '11c737bb49cf96d88fd8d14501f745b209c3a070',
+    'reference' => 'e73dae285b05bf7299ea512c37dd995359f26931',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '11c737bb49cf96d88fd8d14501f745b209c3a070',
+      'reference' => 'e73dae285b05bf7299ea512c37dd995359f26931',
     ),
     'symfony/polyfill-mbstring' => 
     array (
@@ -53,12 +63,12 @@ private static $installed = array (
     ),
     'symfony/var-dumper' => 
     array (
-      'pretty_version' => 'v5.1.8',
-      'version' => '5.1.8.0',
+      'pretty_version' => 'v5.2.1',
+      'version' => '5.2.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4e13f3fcefb1fcaaa5efb5403581406f4e840b9a',
+      'reference' => '13e7e882eaa55863faa7c4ad7c60f12f1a8b5089',
     ),
   ),
 );
