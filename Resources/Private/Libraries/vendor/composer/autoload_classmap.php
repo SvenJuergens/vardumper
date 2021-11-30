@@ -23,6 +23,7 @@ return array(
     'Symfony\\Component\\VarDumper\\Caster\\DsPairStub' => $vendorDir . '/symfony/var-dumper/Caster/DsPairStub.php',
     'Symfony\\Component\\VarDumper\\Caster\\EnumStub' => $vendorDir . '/symfony/var-dumper/Caster/EnumStub.php',
     'Symfony\\Component\\VarDumper\\Caster\\ExceptionCaster' => $vendorDir . '/symfony/var-dumper/Caster/ExceptionCaster.php',
+    'Symfony\\Component\\VarDumper\\Caster\\FiberCaster' => $vendorDir . '/symfony/var-dumper/Caster/FiberCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\FrameStub' => $vendorDir . '/symfony/var-dumper/Caster/FrameStub.php',
     'Symfony\\Component\\VarDumper\\Caster\\GmpCaster' => $vendorDir . '/symfony/var-dumper/Caster/GmpCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\ImagineCaster' => $vendorDir . '/symfony/var-dumper/Caster/ImagineCaster.php',
