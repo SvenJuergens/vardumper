@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '25adc1a35464bc9bff3e9d4c104edc5ecbdbd72b',
+        'pretty_version' => '5.4.x-dev',
+        'version' => '5.4.9999999.9999999-dev',
+        'reference' => 'a642ae25723d9caa425ec3d4a01f8a0ceaef3978',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '25adc1a35464bc9bff3e9d4c104edc5ecbdbd72b',
+            'pretty_version' => '5.4.x-dev',
+            'version' => '5.4.9999999.9999999-dev',
+            'reference' => 'a642ae25723d9caa425ec3d4a01f8a0ceaef3978',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -38,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'symfony/var-dumper' => array(
-            'pretty_version' => 'v5.4.24',
-            'version' => '5.4.24.0',
-            'reference' => '8e12706bf9c68a2da633f23bfdc15b4dce5970b3',
+            'pretty_version' => 'v5.4.28',
+            'version' => '5.4.28.0',
+            'reference' => '684b36ff415e1381d4a943c3ca2502cd2debad73',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),
