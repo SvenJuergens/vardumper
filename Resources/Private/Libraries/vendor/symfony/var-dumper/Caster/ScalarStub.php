@@ -14,16 +14,14 @@ namespace Symfony\Component\VarDumper\Caster;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
- * Represents an enumeration of values.
+ * Represents any arbitrary value.
  *
- * @author Nicolas Grekas <p@tchwork.com>
+ * @author Alexandre Daubois <alex.daubois@gmail.com>
  */
-class EnumStub extends Stub
+class ScalarStub extends Stub
 {
-    public function __construct(
-        array $values,
-        public bool $dumpKeys = true,
-    ) {
-        $this->value = $values;
+    public function __construct(mixed $value)
+    {
+        $this->value = $value;
     }
 }

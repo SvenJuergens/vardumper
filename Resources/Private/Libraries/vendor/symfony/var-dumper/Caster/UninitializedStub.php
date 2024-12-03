@@ -11,19 +11,15 @@
 
 namespace Symfony\Component\VarDumper\Caster;
 
-use Symfony\Component\VarDumper\Cloner\Stub;
-
 /**
- * Represents an enumeration of values.
+ * Represents an uninitialized property.
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class EnumStub extends Stub
+class UninitializedStub extends ConstStub
 {
-    public function __construct(
-        array $values,
-        public bool $dumpKeys = true,
-    ) {
-        $this->value = $values;
+    public function __construct(\ReflectionProperty $property)
+    {
+        parent::__construct('?'.($property->hasType() ? ' '.$property->getType() : ''), 'Uninitialized property');
     }
 }
